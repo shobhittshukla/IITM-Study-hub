@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IITM BS Maths I — Week 1–4 Master Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080b10;
+  --surface: #0e1219;
+  --card: #13181f;
+  --border: #1c2333;
+  --gold: #f5a623;
+  --blue: #4facfe;
+  --green: #43e97b;
+  --pink: #f857a6;
+  --purple: #a18cd1;
+  --red: #ff6b6b;
+  --text: #dde3ee;
+  --muted: #5a6478;
+  --white: #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.75; }
+
+.hero {
+  background:linear-gradient(160deg,#080b10 0%,#0d1525 60%,#080b10 100%);
+  border-bottom:1px solid var(--border);
+  padding:3.5rem 1.5rem 2.5rem; text-align:center; position:relative; overflow:hidden;
+}
+.hero::before {
+  content:''; position:absolute; top:-80px; left:50%; transform:translateX(-50%);
+  width:700px; height:400px;
+  background:radial-gradient(ellipse,rgba(245,166,35,0.1) 0%,transparent 65%);
+  pointer-events:none;
+}
+.badge {
+  display:inline-block; background:rgba(245,166,35,0.12);
+  border:1px solid rgba(245,166,35,0.35); color:var(--gold);
+  font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:2.5px;
+  padding:4px 16px; border-radius:20px; margin-bottom:1.2rem;
+}
+.hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3rem); font-weight:900; color:var(--white); line-height:1.1; margin-bottom:0.8rem; }
+.hero h1 span { color:var(--gold); }
+.hero p { color:var(--muted); font-size:0.9rem; max-width:560px; margin:0 auto 1.5rem; }
+.pills { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.pill { background:var(--card); border:1px solid var(--border); color:var(--muted); font-size:0.72rem; padding:3px 12px; border-radius:20px; font-family:'JetBrains Mono',monospace; }
+
+.nav {
+  position:sticky; top:0; z-index:100;
+  background:rgba(8,11,16,0.96); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex; overflow-x:auto; padding:0 1rem; scrollbar-width:none;
+}
+.nav::-webkit-scrollbar { display:none; }
+.nav a { color:var(--muted); text-decoration:none; font-size:0.76rem; font-weight:500; padding:0.85rem 0.9rem; white-space:nowrap; border-bottom:2px solid transparent; transition:all 0.2s; }
+.nav a:hover { color:var(--gold); border-bottom-color:var(--gold); }
+
+.wrap { max-width:1060px; margin:0 auto; padding:3rem 1.5rem; }
+
+.sec { margin-bottom:4rem; scroll-margin-top:55px; }
+.sec-head { display:flex; align-items:center; gap:14px; margin-bottom:2rem; }
+.sec-num { font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--gold); background:rgba(245,166,35,0.1); border:1px solid rgba(245,166,35,0.25); padding:3px 10px; border-radius:12px; white-space:nowrap; }
+.sec-head h2 { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:var(--white); }
+.line-dec { flex:1; height:1px; background:linear-gradient(90deg,var(--border),transparent); }
+
+.grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; margin-bottom:1.5rem; }
+.grid3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.2rem; margin-bottom:1.5rem; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.4rem; transition:border-color 0.2s,transform 0.2s; }
+.card:hover { border-color:rgba(245,166,35,0.3); transform:translateY(-2px); }
+.ctag { font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:1.5px; padding:2px 10px; border-radius:10px; margin-bottom:0.8rem; display:inline-block; }
+.tg { background:rgba(245,166,35,0.12); color:var(--gold); border:1px solid rgba(245,166,35,0.25); }
+.tb { background:rgba(79,172,254,0.1); color:var(--blue); border:1px solid rgba(79,172,254,0.2); }
+.tn { background:rgba(67,233,123,0.1); color:var(--green); border:1px solid rgba(67,233,123,0.2); }
+.tp { background:rgba(248,87,166,0.1); color:var(--pink); border:1px solid rgba(248,87,166,0.2); }
+.tu { background:rgba(161,140,209,0.1); color:var(--purple); border:1px solid rgba(161,140,209,0.2); }
+.tr { background:rgba(255,107,107,0.1); color:var(--red); border:1px solid rgba(255,107,107,0.2); }
+.card h3 { font-size:1rem; font-weight:600; color:var(--white); margin-bottom:0.6rem; }
+.card p,.card li { font-size:0.85rem; color:var(--muted); }
+.card ul { padding-left:1.2rem; }
+.card ul li { margin-bottom:0.25rem; }
+
+.fb { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--gold); border-radius:10px; padding:1.2rem 1.4rem; margin:1rem 0; }
+.fb.bl { border-left-color:var(--blue); }
+.fb.gn { border-left-color:var(--green); }
+.fb.pk { border-left-color:var(--pink); }
+.fb.pu { border-left-color:var(--purple); }
+.fb.rd { border-left-color:var(--red); }
+.fb h4 { font-family:'JetBrains Mono',monospace; font-size:0.72rem; letter-spacing:1.5px; color:var(--gold); margin-bottom:0.7rem; text-transform:uppercase; }
+.fb.bl h4 { color:var(--blue); }
+.fb.gn h4 { color:var(--green); }
+.fb.pk h4 { color:var(--pink); }
+.fb.pu h4 { color:var(--purple); }
+.fb.rd h4 { color:var(--red); }
+.fb p,.fb li { font-size:0.87rem; color:var(--text); }
+.fb ul { padding-left:1.2rem; }
+.fb ul li { margin-bottom:0.3rem; }
+.fb code { font-family:'JetBrains Mono',monospace; background:rgba(255,255,255,0.06); padding:2px 8px; border-radius:5px; font-size:0.88rem; color:var(--gold); }
+.fb.bl code { color:var(--blue); }
+.fb.gn code { color:var(--green); }
+.fb.pk code { color:var(--pink); }
+.fb.pu code { color:var(--purple); }
+.fb.rd code { color:var(--red); }
+
+.bfm { text-align:center; font-family:'JetBrains Mono',monospace; font-size:clamp(0.88rem,2vw,1.05rem); color:var(--white); background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:10px; padding:0.9rem 1.4rem; margin:0.7rem 0; }
+
+.ex { background:rgba(79,172,254,0.05); border:1px solid rgba(79,172,254,0.15); border-radius:10px; padding:1.2rem 1.4rem; margin:1rem 0; }
+.ex h4 { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--blue); letter-spacing:1.5px; margin-bottom:0.6rem; }
+.ex p { font-size:0.85rem; color:var(--text); }
+.ex code { font-family:'JetBrains Mono',monospace; background:rgba(79,172,254,0.08); color:var(--blue); padding:2px 6px; border-radius:4px; font-size:0.85rem; }
+
+.ap { background:rgba(67,233,123,0.05); border:1px solid rgba(67,233,123,0.15); border-radius:10px; padding:1.2rem 1.4rem; margin:1rem 0; }
+.ap h4 { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--green); letter-spacing:1.5px; margin-bottom:0.6rem; }
+.ap p,.ap li { font-size:0.85rem; color:var(--text); }
+.ap ol,.ap ul { padding-left:1.3rem; }
+.ap li { margin-bottom:0.3rem; }
+
+.warn { background:rgba(255,107,107,0.05); border:1px solid rgba(255,107,107,0.2); border-radius:10px; padding:1rem 1.3rem; margin:0.8rem 0; font-size:0.84rem; color:var(--text); }
+.warn::before { content:'⚠  '; color:var(--red); font-weight:600; }
+
+table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.84rem; }
+th { background:rgba(245,166,35,0.1); color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:1px; padding:10px 14px; text-align:left; border:1px solid var(--border); }
+td { padding:9px 14px; border:1px solid var(--border); color:var(--text); vertical-align:top; }
+tr:nth-child(even) td { background:rgba(255,255,255,0.02); }
+
+.div { height:1px; background:var(--border); margin:2.5rem 0; }
+.hl { color:var(--gold); font-weight:600; }
+.hlb { color:var(--blue); font-weight:600; }
+.hlg { color:var(--green); font-weight:600; }
+.hlp { color:var(--pink); font-weight:600; }
+
+@media(max-width:600px) {
+  .grid2,.grid3 { grid-template-columns:1fr; }
+  .wrap { padding:2rem 1rem; }
+  .hero { padding:2.5rem 1rem 2rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">IITM BS DATA SCIENCE · MATHEMATICS I</div>
+  <h1>Week 1–4 <span>Master Guide</span></h1>
+  <p>Every topic from your 38 PYQ screenshots — formulas, approaches, worked examples, and exam traps.</p>
+  <div class="pills">
+    <span class="pill">Sets & Relations</span>
+    <span class="pill">Inclusion-Exclusion</span>
+    <span class="pill">Coord. Geometry</span>
+    <span class="pill">Lines & Slopes</span>
+    <span class="pill">Polynomials</span>
+    <span class="pill">Quadratic Functions</span>
+    <span class="pill">Roots & Vieta</span>
+    <span class="pill">Polynomial Division</span>
+    <span class="pill">SSE & Regression</span>
+  </div>
+</div>
+
+<nav class="nav">
+  <a href="#sets">1. Sets</a>
+  <a href="#relations">2. Relations</a>
+  <a href="#coord">3. Coord. Geometry</a>
+  <a href="#lines">4. Lines</a>
+  <a href="#poly">5. Polynomials</a>
+  <a href="#quad">6. Quadratics</a>
+  <a href="#roots">7. Roots & Vieta</a>
+  <a href="#polydiv">8. Poly Division</a>
+  <a href="#sse">9. SSE</a>
+  <a href="#pyq">10. PYQ Answers</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ====== SECTION 1: SETS ====== -->
+<div class="sec" id="sets">
+  <div class="sec-head">
+    <span class="sec-num">WEEK 1</span>
+    <h2>Sets, Venn Diagrams & Counting</h2>
+    <div class="line-dec"></div>
+  </div>
+
+  <div class="grid3">
+    <div class="card">
+      <span class="ctag tg">SET OPERATIONS</span>
+      <h3>Core Ops</h3>
+      <ul>
+        <li><span class="hl">A ∪ B</span> — A or B (union)</li>
+        <li><span class="hl">A ∩ B</span> — A and B (intersection)</li>
+        <li><span class="hl">A − B</span> — in A, not in B</li>
+        <li><span class="hl">Aᶜ</span> — complement</li>
+        <li><span class="hl">|A|</span> — cardinality (size)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="ctag tb">CARTESIAN PRODUCT</span>
+      <h3>A × B</h3>
+      <ul>
+        <li>All ordered pairs (a, b) where a∈A, b∈B</li>
+        <li><span class="hlb">|A × B| = |A| × |B|</span></li>
+        <li>If |A×A| = 9 → |A| = 3</li>
+        <li>Elements in A×A tell you what's in A</li>
+        <li>e.g. (1,3) ∈ A×A → 1∈A, 3∈A</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="ctag tn">VENN REGIONS</span>
+      <h3>3-Set Regions</h3>
+      <ul>
+        <li>Up to 7 non-empty regions</li>
+        <li>G = center = A∩B∩C</li>
+        <li>E = Y∩Z only (not X)</li>
+        <li>D = X∩Y only (not Z)</li>
+        <li>F = X∩Z only (not Y)</li>
+        <li>A = X only, B = Y only, C = Z only</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fb">
+    <h4>INCLUSION-EXCLUSION — 2 SETS</h4>
+    <div class="bfm">|A ∪ B| = |A| + |B| − |A ∩ B|</div>
+    <p><strong>Only one subject</strong> = |A| + |B| − 2|A ∩ B|</p>
+    <p style="margin-top:0.4rem"><strong>PYQ Q9:</strong> 72 Math, 85 Stats, 30 both → only one = (72−30)+(85−30) = 42+55 = <code>97</code></p>
+  </div>
+
+  <div class="fb gn">
+    <h4>INCLUSION-EXCLUSION — 3 SETS</h4>
+    <div class="bfm">|A∪B∪C| = |A|+|B|+|C| − |A∩B| − |B∩C| − |A∩C| + |A∩B∩C|</div>
+    <p><strong>PYQ Canteen (Q6 batch 2):</strong> Total=500, none=50 → ordered something = 450<br>
+    450 = 285+195+115 − 70−45−50 + |all 3| = 430 + |all 3| → <code>|all 3| = 20</code></p>
+  </div>
+
+  <div class="ap">
+    <h4>APPROACH — Venn Diagram with divisibility (PYQ Q4 batch 2)</h4>
+    <p>X = divisible by 100, Y = divisible by 25, Z = perfect squares.</p>
+    <p>X ⊂ Y (every multiple of 100 is also multiple of 25) → A (only X, not Y) is <strong>empty</strong> ✓</p>
+    <p>G = X∩Y∩Z: numbers divisible by 100 AND perfect squares → e.g. 100 (=10²), 400 (=20²) → G is NOT empty</p>
+    <p>E = Y∩Z but not X: 25 (=5²)divisible by 25, not 100 → E has elements. 625=25² → <strong>625 is in E</strong> ✓</p>
+    <p>25 in F? F = X∩Z not Y. 25 divisible by 25 (so in Y) → NOT in F.</p>
+  </div>
+
+  <div class="ex">
+    <h4>EXAMPLE — PYQ Q3: Cartesian product A×A has 9 elements, (1,3) and (3,7) ∈ A×A</h4>
+    <p>|A×A|=9 → |A|=3. From the pairs: 1∈A, 3∈A, 7∈A. These are 3 distinct values → A = {1,3,7}. Sum = <code>11</code></p>
+  </div>
+</div>
+
+<!-- ====== SECTION 2: RELATIONS ====== -->
+<div class="sec" id="relations">
+  <div class="sec-head">
+    <span class="sec-num">WEEK 1</span>
+    <h2>Relations — Properties & Functions</h2>
+    <div class="line-dec"></div>
+  </div>
+
+  <table>
+    <tr><th>Property</th><th>Definition</th><th>How to Check</th><th>PYQ Example</th></tr>
+    <tr>
+      <td><span class="hl">Reflexive</span></td>
+      <td>(a,a) ∈ R for all a ∈ A</td>
+      <td>Does every element relate to itself?</td>
+      <td>x²+y²=1: (1,1) → 1+1≠1 → NOT reflexive</td>
+    </tr>
+    <tr>
+      <td><span class="hl">Symmetric</span></td>
+      <td>(a,b)∈R → (b,a)∈R</td>
+      <td>Reverse every pair — still in set?</td>
+      <td>x²+y²=1: (x,y)→(y,x) still satisfies → Symmetric ✓</td>
+    </tr>
+    <tr>
+      <td><span class="hl">Transitive</span></td>
+      <td>(a,b)∈R and (b,c)∈R → (a,c)∈R</td>
+      <td>Find a chain that breaks it</td>
+      <td>x²+y²=1: (1,0),(0,1)∈R but (1,1)∉R → NOT transitive</td>
+    </tr>
+    <tr>
+      <td><span class="hlg">Equivalence</span></td>
+      <td>Reflexive + Symmetric + Transitive</td>
+      <td>All three must hold</td>
+      <td>Same-course-level R is equivalence ✓</td>
+    </tr>
+  </table>
+
+  <div class="fb pk">
+    <h4>PARALLEL & PERPENDICULAR LINE RELATIONS (PYQ Q8-Q10, batch 1)</h4>
+    <ul>
+      <li><strong>R₁ = ℓ₁ ∥ ℓ₂</strong>: Reflexive (ℓ∥ℓ ✓), Symmetric ✓, Transitive ✓ → <strong>Equivalence relation</strong></li>
+      <li><strong>R₂ = ℓ₁ ⊥ ℓ₂</strong>: NOT reflexive (ℓ⊥ℓ is false), Symmetric ✓, NOT transitive → <strong>Not equivalence</strong></li>
+      <li>If (ℓ₁,ℓ₂)∈R₂ and (ℓ₂,ℓ₃)∈R₂ → ℓ₁ ∥ ℓ₃ → (ℓ₁,ℓ₃) ∈ <strong>R₁</strong></li>
+      <li>If (ℓ₁,ℓ₂)∈R₁ and (ℓ₂,ℓ₃)∈R₂ → ℓ₁ ⊥ ℓ₃ → (ℓ₁,ℓ₃) ∈ <strong>R₂</strong></li>
+    </ul>
+  </div>
+
+  <div class="fb pu">
+    <h4>ONE-ONE (INJECTIVE) FUNCTION</h4>
+    <p>A relation is a <strong>function</strong> if each x has exactly one y (vertical line test).<br>
+    It's <strong>one-one</strong> if different x → different y (horizontal line test).</p>
+    <ul style="margin-top:0.6rem">
+      <li>R₁: x+y>2 → many y per x → <strong>NOT a function</strong></li>
+      <li>R₂: x>y → NOT a function</li>
+      <li>R₃: x+y=12 → y=12−x, unique y per x, and unique x per y → <strong>one-one function ✓</strong></li>
+      <li>R₄: y=x² → x=2 and x=−2 both give y=4 → function but <strong>NOT one-one</strong></li>
+    </ul>
+  </div>
+
+  <div class="ap">
+    <h4>APPROACH — R₁ = {(a,b) | a∈A, b∈B, a divides b} — divisibility relation</h4>
+    <ol>
+      <li>A = odd positive integers ≤ 20 = {1,3,5,7,9,11,13,15,17,19}</li>
+      <li>B = positive integers ≤ 30 divisible by 5 = {5,10,15,20,25,30}</li>
+      <li>(6,14): 6 ∉ A → NOT in R₁</li>
+      <li>Symmetric? (1,5)∈R₁: is (5,1)∈R₁? 5∈A ✓ but 1∉B → NOT symmetric</li>
+      <li>Transitive? This is from A→B (not same set), standard transitivity inapplicable in same sense</li>
+      <li>Answer: R₁ is transitive (vacuously, no chain a→b→c possible with b∈B∩A) ✓</li>
+    </ol>
+  </div>
+
+  <div class="fb bl">
+    <h4>RELATIONS ON S×S — PYQ Q10</h4>
+    <p>S = {a | a∈ℕ, a≤10} = {1,2,...,10}</p>
+    <p>R₁ = {(x,y)|y=3x}: pairs where y=3x, both ≤10 → {(1,3),(2,6),(3,9)}</p>
+    <p>R₂ = {(x,y)|y=x²}: pairs where y=x², both ≤10 → {(1,1),(2,4),(3,9)}</p>
+    <p>R₁\R₂ = in R₁ but not R₂: {(1,3),(2,6)} → cardinality = <code>2</code></p>
+  </div>
+</div>
+
+<!-- ====== SECTION 3: COORDINATE GEOMETRY ====== -->
+<div class="sec" id="coord">
+  <div class="sec-head">
+    <span class="sec-num">WEEK 2</span>
+    <h2>Coordinate Geometry</h2>
+    <div class="line-dec"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="fb">
+      <h4>DISTANCE FORMULA</h4>
+      <div class="bfm">d = √[(x₂−x₁)² + (y₂−y₁)²]</div>
+    </div>
+    <div class="fb bl">
+      <h4>SECTION FORMULA (INTERNAL)</h4>
+      <div class="bfm">P = ( (mx₂+nx₁)/(m+n) , (my₂+ny₁)/(m+n) )</div>
+      <p>P divides A(x₁,y₁)→B(x₂,y₂) in ratio m:n from A</p>
+    </div>
+  </div>
+
+  <div class="fb gn">
+    <h4>AREA OF TRIANGLE — 3 COORDINATE POINTS</h4>
+    <div class="bfm">Area = ½ |x₁(y₂−y₃) + x₂(y₃−y₁) + x₃(y₁−y₂)|</div>
+    <p><strong>Memory:</strong> Shoelace — start at (x₁,y₁), go around. Take absolute value and halve.</p>
+  </div>
+
+  <div class="ex">
+    <h4>EXAMPLE — PYQ Q11 batch 2: Triangle ABC with A(4,3), B(2,2), C(8,3)</h4>
+    <p>Area = ½|4(2−3) + 2(3−3) + 8(3−2)| = ½|4(−1) + 0 + 8(1)| = ½|−4+8| = ½×4 = <code>2</code></p>
+  </div>
+
+  <div class="ap">
+    <h4>APPROACH — Find P(t,t²) such that area(ABC)=4×area(PAB) (PYQ Q12 batch 2)</h4>
+    <ol>
+      <li>Already found area(ABC) = 2</li>
+      <li>So area(PAB) = 0.5</li>
+      <li>P=(t,t²), A=(4,3), B=(2,2): area = ½|t(3−2)+4(2−t²)+2(t²−3)| = ½|t+8−4t²+2t²−6| = ½|−2t²+t+2|</li>
+      <li>Set = 0.5: |−2t²+t+2| = 1 → −2t²+t+2 = ±1</li>
+      <li>Case +1: −2t²+t+1=0 → 2t²−t−1=0 → (2t+1)(t−1)=0 → t=−½ or t=1</li>
+      <li>Case −1: −2t²+t+3=0 → 2t²−t−3=0 → (2t−3)(t+1)=0 → t=3/2 or t=−1</li>
+      <li>P(t,t²): t=−½→(−½,¼), t=1→(1,1), t=−1→(−1,1). Check options: (−2,4), (−1,1), (2,4)... t=−2 gives (−2,4): area check needed</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ====== SECTION 4: LINES ====== -->
+<div class="sec" id="lines">
+  <div class="sec-head">
+    <span class="sec-num">WEEK 2</span>
+    <h2>Lines — Equations, Slopes, Intercepts</h2>
+    <div class="line-dec"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="fb">
+      <h4>SLOPE</h4>
+      <div class="bfm">m = (y₂−y₁) / (x₂−x₁)</div>
+      <ul>
+        <li>Line ∥ X-axis → slope = <code>0</code></li>
+        <li>Line ∥ Y-axis → slope = <code>undefined</code> (not 1!)</li>
+        <li>Slope is NOT always positive (can be negative)</li>
+      </ul>
+    </div>
+    <div class="fb bl">
+      <h4>LINE EQUATIONS</h4>
+      <ul>
+        <li>Slope-intercept: <code>y = mx + c</code></li>
+        <li>Point-slope: <code>y − y₁ = m(x − x₁)</code></li>
+        <li>Two-intercept: <code>x/a + y/b = 1</code></li>
+        <li>General: <code>Ax + By + C = 0</code> → m = −A/B</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="fb gn">
+      <h4>PARALLEL LINES</h4>
+      <div class="bfm">m₁ = m₂ (same slope)</div>
+      <p>Different y-intercepts → never intersect.</p>
+    </div>
+    <div class="fb pk">
+      <h4>PERPENDICULAR LINES</h4>
+      <div class="bfm">m₁ × m₂ = −1</div>
+      <p>Negative reciprocal: <code>m₂ = −1/m₁</code></p>
+    </div>
+  </div>
+
+  <div class="fb pu">
+    <h4>ANGLE BETWEEN TWO LINES</h4>
+    <div class="bfm">tan θ = |(m₁ − m₂) / (1 + m₁·m₂)|</div>
+    <p>If m₁m₂ = −1 → θ = 90°. If m₁ = m₂ → θ = 0°.</p>
+  </div>
+
+  <div class="ex">
+    <h4>EXAMPLE — PYQ L₁ (x-int=2,y-int=−3), L₂ (x-int=−1,y-int=2)</h4>
+    <p>L₁ through (2,0) and (0,−3): m₁ = (−3−0)/(0−2) = 3/2 → y = (3/2)x − 3</p>
+    <p>L₂ through (−1,0) and (0,2): m₂ = (2−0)/(0−(−1)) = 2 → y = 2x + 2</p>
+    <p>Intersection: (3/2)x−3 = 2x+2 → −(1/2)x = 5 → x=−10, y=−18 → <code>(−10,−18)</code></p>
+    <p>tan θ = |(3/2−2)/(1+3)| = |(−1/2)/4| = <code>1/8</code></p>
+  </div>
+
+  <div class="ex">
+    <h4>EXAMPLE — PYQ Q15: Line ∥ to y=7x+6 through (1,9)</h4>
+    <p>Parallel → m=7. Point-slope: y−9 = 7(x−1) → y = 7x + 2</p>
+    <p>Slope = 7 ✓ | y-intercept = 2, NOT 3 | Equation: y=7x+2, NOT 7x+6 | x-int: 0=7x+2 → x=−2/7, NOT 1/6</p>
+  </div>
+
+  <div class="ex">
+    <h4>EXAMPLE — PYQ Q11: l: y=−(2/3)x+4, M=x-int, N=y-int, P divides MN in 2:1</h4>
+    <p>M: y=0 → x=6 → M=(6,0). N: x=0 → y=4 → N=(0,4)</p>
+    <p>P divides MN in 2:1 (from M): P = ((2×0+1×6)/3, (2×4+1×0)/3) = (2, 8/3)</p>
+    <p>Slope of OP = (8/3)/2 = <code>4/3</code></p>
+  </div>
+
+  <div class="ex">
+    <h4>EXAMPLE — PYQ Q12: l₁: x-int (4,0), y-int (0,2). l₂ passes through l₁∩(x+y=5), ∥ x-axis</h4>
+    <p>l₁: x/4+y/2=1 → x+2y=4. System: x+2y=4 and x+y=5 → subtract: y=−1, x=6 → wait: x+y=5 and x+2y=4 → subtract: −y=1 → y=−1, x=6</p>
+    <p>Hmm, check: x+2y=4 → 6+2(−1)=4 ✓. So intersection = (6,−1). l₂ ∥ x-axis (slope=0) through (6,−1) → y=−1. y-intercept = <code>−1</code></p>
+  </div>
+
+  <div class="warn">Vertex of y − k = a(x − h)² is (h, k) — the h has a MINUS sign in the formula. So y−6 = 3(x−10)² → vertex = (10, 6), NOT (6,10)!</div>
+
+  <div class="fb rd">
+    <h4>PERPENDICULAR/PARALLEL — CHECKING TWO EQUATIONS</h4>
+    <ul>
+      <li><code>−5x + 4y − 1 = 0</code>: slope = 5/4</li>
+      <li><code>x/4 − y/5 = 1</code> → multiply by 20: 5x − 4y = 20 → slope = 5/4</li>
+      <li>Same slope → <strong>PARALLEL</strong> (common trap: answer is parallel, not perpendicular)</li>
+    </ul>
+  </div>
+
+  <div class="ap">
+    <h4>APPROACH — Ferry ghat (two boats) problem</h4>
+    <ol>
+      <li>A = origin (0,0). Boat B: along y = −2x (slope = −2)</li>
+      <li>Boat C: perpendicular to B → slope of C = +1/2 → path: y = x/2</li>
+      <li>River width = 1 km (horizontal, i.e., the line x = 1 is the other bank)</li>
+      <li>Ferry ghat B: intersection of y=−2x with bank → (−1/2, 1) but dist from A = √(1/4+1) = √(5/4) = √5/2</li>
+      <li>Ferry ghat C: intersection of y=x/2 with bank (x=1) → (1, 1/2), dist from A = √(1+1/4) = √5/2</li>
+      <li>Both are √5/2. Check options: answer for ghat B or C = <code>√5/2</code></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ====== SECTION 5: POLYNOMIALS ====== -->
+<div class="sec" id="poly">
+  <div class="sec-head">
+    <span class="sec-num">WEEK 3</span>
+    <h2>Polynomials — Degree, End Behavior & Turning Points</h2>
+    <div class="line-dec"></div>
+  </div>
+
+  <div class="grid3">
+    <div class="card">
+      <span class="ctag tg">DEGREE</span>
+      <h3>Highest Power</h3>
+      <ul>
+        <li>At most <span class="hl">n−1 turning points</span> for degree n</li>
+        <li>At most n real roots (x-intercepts)</li>
+        <li>Degree determines end behavior</li>
+        <li>Leading term dominates for large |x|</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="ctag tb">LEADING COEFFICIENT</span>
+      <h3>Sign of Lead Term</h3>
+      <ul>
+        <li>Even + → both ends → +∞</li>
+        <li>Even − → both ends → −∞</li>
+        <li>Odd + → left:−∞, right:+∞</li>
+        <li>Odd − → left:+∞, right:−∞</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="ctag tn">X-INTERCEPTS</span>
+      <h3>Root Counting</h3>
+      <ul>
+        <li>Set p(x)=0, distinct solutions</li>
+        <li>Double root (x−a)² → touches x-axis, counts as 1 intercept</li>
+        <li>r₁(x) = 0.02(x−5)(x−7)(x−9)(x−11)(x−13) → <span class="hlg">5 intercepts</span></li>
+        <li>r₂(x): (x−5)² still gives x=5 once → <span class="hlg">5 intercepts</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fb">
+    <h4>END BEHAVIOR TABLE</h4>
+    <table>
+      <tr><th>Degree</th><th>Leading Coeff</th><th>x→+∞</th><th>x→−∞</th><th>Example</th></tr>
+      <tr><td>Even</td><td>+</td><td>+∞</td><td>+∞</td><td>x², x⁴</td></tr>
+      <tr><td>Even</td><td>−</td><td>−∞</td><td>−∞</td><td>−x², −2x⁴</td></tr>
+      <tr><td>Odd</td><td>+</td><td>+∞</td><td>−∞</td><td>x³, x⁵</td></tr>
+      <tr><td>Odd</td><td>−</td><td>−∞</td><td>+∞</td><td>−x³, −x⁵</td></tr>
+    </table>
+  </div>
+
+  <div class="ex">
+    <h4>EXAMPLE — PYQ Q7 batch 1: p(x)=−x⁵+5x⁴−7x−2, q(x)=−x⁵+5x⁴−x²−2</h4>
+    <p>Both: degree 5, leading coeff = −1 (negative, odd) → left:+∞, right:−∞</p>
+    <p>So: q(x)→−∞ as x→+∞ ✓ | p(x)→−∞ as x→+∞ (so "p→+∞ as x→+∞" is FALSE)</p>
+    <p>Turning points of p: at most 5−1 = <code>4</code> ✓</p>
+    <p>Quotient of q÷p: leading terms same (−x⁵/−x⁵=1), so quotient is <strong>not a constant</strong> (there are lower terms)</p>
+  </div>
+
+  <div class="fb bl">
+    <h4>POLYNOMIAL DEGREE RULES</h4>
+    <ul>
+      <li>deg(p + q) ≤ max(deg p, deg q) — can be less if leading terms cancel</li>
+      <li>deg(p · q) = deg(p) + deg(q)</li>
+      <li>If p(x) is degree n with leading coeff aₙ, s(x) degree m: deg(quotient) = n−m, deg(remainder) ≤ m−1</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ====== SECTION 6: QUADRATIC FUNCTIONS ====== -->
+<div class="sec" id="quad">
+  <div class="sec-head">
+    <span class="sec-num">WEEK 3–4</span>
+    <h2>Quadratic Functions — Vertex, Graph & Applications</h2>
+    <div class="line-dec"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="fb">
+      <h4>STANDARD & VERTEX FORMS</h4>
+      <div class="bfm">f(x) = ax² + bx + c</div>
+      <div class="bfm">f(x) = a(x − h)² + k</div>
+      <ul>
+        <li>Vertex = <code>(h, k)</code> where <code>h = −b/(2a)</code></li>
+        <li>k = f(h) = minimum(a>0) or maximum(a<0)</li>
+        <li>Axis of symmetry: <code>x = h</code></li>
+        <li>a > 0 → opens UP ∪</li>
+        <li>a < 0 → opens DOWN ∩</li>
+      </ul>
+    </div>
+    <div class="fb bl">
+      <h4>KEY VALUES</h4>
+      <ul>
+        <li>y-intercept: set x=0 → <code>y = c</code></li>
+        <li>x-intercepts: solve ax²+bx+c=0</li>
+        <li>Discriminant: <code>Δ = b²−4ac</code></li>
+        <li>Δ > 0 → 2 real roots</li>
+        <li>Δ = 0 → 1 real root (tangent to x-axis)</li>
+        <li>Δ < 0 → no real roots (graph doesn't cross x-axis)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ap">
+    <h4>APPROACH — Find quadratic given: vertex = intersection of y₁,y₂ AND y-intercept (PYQ Q3 batch 1)</h4>
+    <ol>
+      <li>y₁ = x²−4x+1, y₂ = x²−6x−3. Intersect: set equal → x²−4x+1 = x²−6x−3 → 2x = −4 → x = −2</li>
+      <li>y at x=−2: y₁(−2) = 4+8+1 = 13 → vertex = (−2, 13)</li>
+      <li>Vertex form: f(x) = a(x+2)² + 13</li>
+      <li>y-intercept = 2: f(0) = 4a+13 = 2 → a = −11/4</li>
+      <li>Answer: <strong>f(x) = (−11/4)(x+2)² + 13</strong></li>
+    </ol>
+  </div>
+
+  <div class="ap">
+    <h4>APPROACH — Graph of q(x) = ax²+bx+2, a>0 (PYQ Q18 batch 2)</h4>
+    <ol>
+      <li>a > 0 → parabola opens <strong>upward</strong> (U-shape, minimum)</li>
+      <li>c = 2 → y-intercept = 2 → graph passes through (0,2)</li>
+      <li>Look for: upward-opening parabola, y-intercept above x-axis</li>
+      <li>Eliminate: any downward-opening graphs; any with y-int ≤ 0</li>
+    </ol>
+  </div>
+
+  <div class="ex">
+    <h4>EXAMPLE — PYQ Q13 batch 1: p(x)=a(x−4)(x−6)(x−8)(x−10) passes through vertex of q(x)=−(x−7)²−9</h4>
+    <p>Vertex of q = (7, −9). Substitute into p: p(7) = a(7−4)(7−6)(7−8)(7−10) = a(3)(1)(−1)(−3) = 9a</p>
+    <p>Set 9a = −9 → <code>a = −1</code></p>
+  </div>
+</div>
+
+<!-- ====== SECTION 7: ROOTS & VIETA ====== -->
+<div class="sec" id="roots">
+  <div class="sec-head">
+    <span class="sec-num">WEEK 3–4</span>
+    <h2>Roots, Vieta's Formulas & Factor Theorem</h2>
+    <div class="line-dec"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="fb">
+      <h4>VIETA'S FORMULAS — ax²+bx+c, roots α and β</h4>
+      <div class="bfm">α + β = −b/a (sum of roots)</div>
+      <div class="bfm">α × β = c/a (product of roots)</div>
+    </div>
+    <div class="fb bl">
+      <h4>FACTOR THEOREM</h4>
+      <div class="bfm">p(a) = 0 ⟺ (x − a) is a factor of p(x)</div>
+      <p>If (x+a) is factor → p(−a) = 0</p>
+      <p>To verify root x=k: just substitute → must give 0</p>
+    </div>
+  </div>
+
+  <div class="ap">
+    <h4>APPROACH — Aman-Prakash mistake problem (PYQ Q16 batch 2)</h4>
+    <ol>
+      <li>Aman made mistake in <em>constant term</em> but got correct <em>sum of roots</em></li>
+      <li>Aman's roots: 3 and 4 → sum = 7 → correct sum = 7 → correct b = −7 (since sum = −b/a, a=1)</li>
+      <li>Prakash made mistake in <em>coefficient of x</em> but got correct <em>product of roots</em></li>
+      <li>Prakash's roots: 2 and 3 → product = 6 → correct c = 6</li>
+      <li>Correct equation: x² − 7x + 6 = 0 → (x−1)(x−6) = 0 → roots: <strong>1 and 6</strong></li>
+    </ol>
+  </div>
+
+  <div class="ex">
+    <h4>EXAMPLE — PYQ Q14 batch 2: (x+a) is factor of p(x) = kx²+kax+5x+15</h4>
+    <p>Factor theorem: p(−a) = 0 → k(−a)² + ka(−a) + 5(−a) + 15 = 0</p>
+    <p>→ ka² − ka² − 5a + 15 = 0 → −5a + 15 = 0 → <code>a = 3</code></p>
+  </div>
+
+  <div class="ex">
+    <h4>EXAMPLE — PYQ Q19 batch 2: x=2 is root of q(x) — which expression?</h4>
+    <p>Substitute x=2 into each option:</p>
+    <p>• −x²+2x+2: −4+4+2 = 2 ≠ 0 ✗</p>
+    <p>• −x²+x+2: −4+2+2 = 0 ✓</p>
+    <p>• 2x²−5x+2: 8−10+2 = 0 ✓</p>
+    <p>• 2x²−5x+4: 8−10+4 = 2 ≠ 0 ✗</p>
+    <p><strong>MSQ: both 2nd and 3rd options are correct</strong></p>
+  </div>
+
+  <div class="ap">
+    <h4>APPROACH — vertex+y-intercept → find correct b vs wrong b (PYQ Q8 batch 1)</h4>
+    <ol>
+      <li>Vertex (3,−2) → f(x) = a(x−3)²−2</li>
+      <li>y-intercept 4: f(0) = 9a−2 = 4 → a = 2/3</li>
+      <li>Expand: (2/3)(x²−6x+9)−2 = (2/3)x²−4x+6−2 = (2/3)x²−4x+4</li>
+      <li>Correct b = −4. Correct sum of roots = −(−4)/(2/3) = 4÷(2/3) = 6</li>
+      <li>Wrong b=5: wrong eq = (2/3)x²+5x+4. Wrong sum = −5/(2/3) = −15/2</li>
+      <li>Absolute diff = |6 − (−15/2)| = |6 + 7.5| = <code>13.5</code></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ====== SECTION 8: POLYNOMIAL DIVISION ====== -->
+<div class="sec" id="polydiv">
+  <div class="sec-head">
+    <span class="sec-num">WEEK 4</span>
+    <h2>Polynomial Division — Quotient, Remainder & Degrees</h2>
+    <div class="line-dec"></div>
+  </div>
+
+  <div class="fb">
+    <h4>DIVISION ALGORITHM</h4>
+    <div class="bfm">p(x) = q(x) · d(x) + r(x)</div>
+    <p>Where d(x) = divisor, q(x) = quotient, r(x) = remainder</p>
+    <ul>
+      <li><strong>deg(r) &lt; deg(d)</strong> always</li>
+      <li>deg(quotient) = deg(dividend) − deg(divisor)</li>
+      <li>max possible deg(remainder) = deg(divisor) − 1</li>
+    </ul>
+  </div>
+
+  <div class="ex">
+    <h4>EXAMPLE — PYQ Q17 batch 2: p(x)=x⁴+3x³−9x+8, q(x)=(x²+x)(x+3)=x³+4x²+3x</h4>
+    <p>deg(p)=4, deg(q)=3 → quotient degree = 1, remainder degree ≤ 2</p>
+    <p>Long division: x⁴+3x³+0x²−9x+8 ÷ (x³+4x²+3x)</p>
+    <p>Step 1: x⁴/x³ = x → x(x³+4x²+3x) = x⁴+4x³+3x² → remainder: −x³−3x²−9x+8</p>
+    <p>Step 2: −x³/x³ = −1 → −1(x³+4x²+3x) = −x³−4x²−3x → remainder: x²−6x+8</p>
+    <p>r(x) = x²−6x+8 = (x−2)(x−4). Minimum at x=3: r(3)=9−18+8=−1. y-int r(0)=8.</p>
+    <p>Line l(x) through (0,8) and (3,−1): slope = (−1−8)/(3−0) = −3 → <code>l(x) = −3x + 8</code></p>
+  </div>
+
+  <div class="fb bl">
+    <h4>DEGREE ANALYSIS — PYQ COMPREHENSION batch 2 (p,q,s polynomials)</h4>
+    <p>p(x)=4x⁵+9x⁴+..., q(x)=−5x⁴+8x²+..., s(x)=x⁷+72x⁵+...</p>
+    <table>
+      <tr><th>Operation</th><th>Degrees</th><th>Max deg of result</th></tr>
+      <tr><td>r₁ = rem when q divides p+q</td><td>deg(p+q)=5, deg(q)=4</td><td>rem ≤ 3</td></tr>
+      <tr><td>r₂ = rem when p divides s</td><td>deg(s)=7, deg(p)=5</td><td>rem ≤ 4</td></tr>
+      <tr><td>t₁ = quot when q divides p</td><td>5−4 = 1</td><td>deg(t₁) = 1 ✓</td></tr>
+      <tr><td>t₂ = quot when p divides s</td><td>7−5 = 2</td><td>deg(t₂) = 2 → NOT 3 ✗</td></tr>
+    </table>
+  </div>
+
+  <div class="fb gn">
+    <h4>z(x) = r(x)·s(x) END BEHAVIOR (PYQ Q20 batch 2)</h4>
+    <p>p(x)=x⁴+3x³−9x+8, q(x)=(x²+x)(x+3). r=rem(p÷q) deg=2, s=quot(p÷q) deg=1 (leading coeff +1)</p>
+    <ul>
+      <li>r(x) = x²−6x+8 (lead coeff +1, even degree)</li>
+      <li>s(x) = x−1 (lead coeff +1, degree 1)</li>
+      <li>z(x) = r·s: degree = 2+1 = 3 (odd), leading coeff = (+1)(+1) = +1 (positive)</li>
+      <li>Odd degree, positive lead → z→+∞ as x→+∞ ✓, z→−∞ as x→−∞</li>
+      <li><strong>z is an odd degree polynomial</strong> ✓</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ====== SECTION 9: SSE ====== -->
+<div class="sec" id="sse">
+  <div class="sec-head">
+    <span class="sec-num">WEEK 2–3</span>
+    <h2>SSE — Sum of Squared Errors</h2>
+    <div class="line-dec"></div>
+  </div>
+
+  <div class="fb">
+    <h4>SSE FORMULA</h4>
+    <div class="bfm">SSE = Σ (yᵢ − ŷᵢ)²</div>
+    <p>yᵢ = actual value, ŷᵢ = predicted from regression line</p>
+  </div>
+
+  <div class="ap">
+    <h4>APPROACH — PYQ Q14 batch 1 (café, y=2x+3, SSE=10, 5th point actual > predicted)</h4>
+    <ol>
+      <li>Predicted values: ŷ(1)=5, ŷ(2)=7, ŷ(3)=9, ŷ(4)=11, ŷ(5)=13</li>
+      <li>Known errors: (6−5)²=1, (6−7)²=1, (10−9)²=1, (11−11)²=0 → sum=3</li>
+      <li>Remaining: SSE₅ = 10−3 = 7 → (y₅−13)² = 7 → y₅−13 = ±√7 ≈ ±2.646</li>
+      <li>Actual > predicted → y₅ = 13+√7 ≈ 15.65 → nearest integer = <code>16</code></li>
+    </ol>
+  </div>
+
+  <div class="ap">
+    <h4>APPROACH — PYQ Q7 batch 2 (y=2x+5, find SSE)</h4>
+    <p>Data: x:{1,2,−1,0,3,4}, y:{6,8,1,4,10,11}</p>
+    <ol>
+      <li>Predicted: 7, 9, 3, 5, 11, 13</li>
+      <li>Errors: (6−7)²=1, (8−9)²=1, (1−3)²=4, (4−5)²=1, (10−11)²=1, (11−13)²=4</li>
+      <li>SSE = 1+1+4+1+1+4 = <code>12</code></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ====== SECTION 10: PYQ QUICK ANSWERS ====== -->
+<div class="sec" id="pyq">
+  <div class="sec-head">
+    <span class="sec-num">EXAM PREP</span>
+    <h2>PYQ Quick-Answer Reference</h2>
+    <div class="line-dec"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card"><span class="ctag tg">Q3 Batch 1 — MCQ</span><h3>Quadratic: vertex at y₁∩y₂</h3><p>Intersection: x=−2,y=13. a=(2−13)/4=−11/4.<br><strong>Ans: y=(−11/4)(x+2)²+13</strong></p></div>
+    <div class="card"><span class="ctag tb">Q4 Batch 1 — MSQ (Roads)</span><h3>r₁ and r₂ x-intercepts</h3><p>r₁: 5 intercepts (5,7,9,11,13). r₂: still 5 (x=5 is double root, 1 intercept).<br><strong>Ans: both have 5 x-intercepts</strong></p></div>
+    <div class="card"><span class="ctag tn">Q5 Batch 1 — MSQ (Courses)</span><h3>R = same level, S = prerequisite</h3><p>R is equivalence ✓ | S is not symmetric ✓<br><strong>Ans: "R is equivalence" and "S is not symmetric"</strong></p></div>
+    <div class="card"><span class="ctag tp">Q6 Batch 1 — MSQ (Lines)</span><h3>Vertex & parallel/perpendicular</h3><p>y−6=3(x−10)² → vertex (10,6) ✓<br>Slopes both 5/4 → parallel ✓<br><strong>Ans: vertex (10,6) and lines are parallel</strong></p></div>
+    <div class="card"><span class="ctag tu">Q9 Batch 1 — SA (Students)</span><h3>72 Math, 85 Stats, 30 both</h3><p>Only one subject = 42+55 = <strong>97</strong></p></div>
+    <div class="card"><span class="ctag tr">Q10 Batch 1 — SA (Relations)</span><h3>R₁\R₂ cardinality</h3><p>R₁={(1,3),(2,6),(3,9)}, R₂={(1,1),(2,4),(3,9)}<br>R₁\R₂={(1,3),(2,6)} → <strong>2</strong></p></div>
+    <div class="card"><span class="ctag tg">Q13 Batch 1 — SA (Polynomial)</span><h3>p(x)=a(x−4)(x−6)(x−8)(x−10) through vertex of q</h3><p>Vertex of q=−(x−7)²−9 is (7,−9). p(7)=9a=−9 → <strong>a=−1</strong></p></div>
+    <div class="card"><span class="ctag tb">Q14 Batch 1 — SA (SSE)</span><h3>5th day drinks, y=2x+3, SSE=10</h3><p>Known SSE=3, remaining=7. y₅=13+√7≈15.65 → <strong>16</strong></p></div>
+    <div class="card"><span class="ctag tn">Q3 Batch 2 — SA (Cartesian)</span><h3>A×A=9 elements, (1,3),(3,7)∈A×A</h3><p>A={1,3,7}. Sum = <strong>11</strong></p></div>
+    <div class="card"><span class="ctag tp">Q5 Batch 2 — MCQ (Circle relation)</span><h3>R₁={(x,y):x²+y²=1}</h3><p>Not reflexive, Symmetric ✓, Not transitive<br><strong>Ans: R₁ is symmetric only</strong></p></div>
+    <div class="card"><span class="ctag tu">Q6 Batch 2 — MCQ (One-one function)</span><h3>Which R is one-one?</h3><p>R₃: y=12−x, each x gives unique y, each y comes from unique x → <strong>R₃ is one-one function</strong></p></div>
+    <div class="card"><span class="ctag tr">Q6 Batch 2 canteen — SA (3-set)</span><h3>500 students, 50 none, find all-three</h3><p>450=285+195+115−70−45−50+n₃ = 430+n₃ → <strong>n₃=20</strong></p></div>
+    <div class="card"><span class="ctag tg">Q14 Batch 2 — SA (Factor theorem)</span><h3>(x+a) factor of kx²+kax+5x+15</h3><p>p(−a)=0 → −5a+15=0 → <strong>a=3</strong></p></div>
+    <div class="card"><span class="ctag tb">Q16 Batch 2 — MCQ (Aman-Prakash)</span><h3>Roots mistake problem</h3><p>Correct eq: x²−7x+6=0 → roots <strong>1 and 6</strong></p></div>
+    <div class="card"><span class="ctag tn">Q17 Batch 2 — MCQ (Poly division)</span><h3>r(x) from p÷q, line l(x)</h3><p>r(x)=x²−6x+8, min at x=3 gives r(3)=−1, y-int=8<br><strong>l(x)=−3x+8</strong></p></div>
+    <div class="card"><span class="ctag tp">Q7 Batch 2 — SA (SSE)</span><h3>y=2x+5, compute SSE</h3><p>Errors: 1,1,4,1,1,4 → <strong>SSE = 12</strong></p></div>
+  </div>
+
+  <div class="div"></div>
+
+  <h3 style="color:var(--white);margin-bottom:1.5rem;">🧠 Exam Strategy — Don't Lose Easy Marks</h3>
+
+  <div class="grid3">
+    <div class="card">
+      <span class="ctag tg">MCQ TRAPS</span>
+      <h3>Common Wrong Answers</h3>
+      <ul>
+        <li>Vertex (h,k) — h has minus sign: (x−10)² → h=+10, NOT −10</li>
+        <li>Parallel → same slope, NOT same equation</li>
+        <li>Double root = 1 x-intercept (not 2)</li>
+        <li>Line ∥ y-axis → slope undefined (not 0)</li>
+        <li>x-intercept means y=0 (not x=0)</li>
+        <li>Sum of ONLY-ONE-subject ≠ sum of all students</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="ctag tb">FORMULA RECALL</span>
+      <h3>Quick Lookup Order</h3>
+      <ul>
+        <li>Set question → Inclusion-Exclusion first</li>
+        <li>Line question → get slope first</li>
+        <li>Quadratic → convert to vertex form</li>
+        <li>Root/factor → substitute and check</li>
+        <li>Polynomial behavior → degree + lead sign</li>
+        <li>SSE → plug x into line, square differences</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="ctag tn">VERIFY CHECKS</span>
+      <h3>Before Selecting Answer</h3>
+      <ul>
+        <li>deg(remainder) must be &lt; deg(divisor)</li>
+        <li>Area formula → always take |…|</li>
+        <li>MSQ: test ALL 4 options — don't stop at 1</li>
+        <li>Perp: m₁×m₂=−1 (NOT m₁=−m₂)</li>
+        <li>For counting in sets: list elements explicitly for small sets</li>
+        <li>Vieta: sum=−b/a (mind the NEGATIVE sign)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:2rem 0;border-top:1px solid var(--border);margin-top:2rem;">
+  <p style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);">IITM BS Data Science · Mathematics I · Week 1–4 · Qualifier: March 15, 2026</p>
+  <p style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);margin-top:0.3rem;">Compiled from 38 PYQ screenshots across 2 exam batches</p>
+</div>
+
+</div>
+</body>
+</html>
